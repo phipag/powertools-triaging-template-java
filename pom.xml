@@ -141,6 +141,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.3</version>
+                <configuration>
+                    <environmentVariables>
+                        <LAMBDA_TASK_ROOT>handler</LAMBDA_TASK_ROOT>
+                        <AWS_LAMBDA_FUNCTION_NAME>TriageFunction</AWS_LAMBDA_FUNCTION_NAME>
+                    </environmentVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>

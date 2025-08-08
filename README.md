@@ -130,9 +130,6 @@ mvn test -X
 # Run specific test class
 mvn test -Dtest=TriageHandlerTest
 
-# Skip tests during build (useful for quick issue reproduction)
-mvn clean compile
-
 # Run tests and generate reports
 mvn clean test surefire-report:report
 ```

@@ -4,25 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 
-@ExtendWith(MockitoExtension.class)
 class TriageHandlerTest {
-
-    @Mock
-    private Context context;
 
     @Test
     void handleRequest_shouldReturnSuccessResponse() {
         // Given
         TriageHandler handler = new TriageHandler();
         APIGatewayProxyRequestEvent request = new APIGatewayProxyRequestEvent();
+        Context context = new TestContext();
 
         // When
         APIGatewayProxyResponseEvent response = handler.handleRequest(request, context);
