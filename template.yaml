@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Powertools for AWS Lambda (Java) - Triaging Template
+
+Globals:
+  Function:
+    Timeout: 20
+    Runtime: java21
+    MemorySize: 512
+    Tracing: Active
+    Environment:
+      Variables:
+        # Powertools for AWS Lambda (Java) env vars
+        POWERTOOLS_LOG_LEVEL: INFO
+        POWERTOOLS_LOGGER_SAMPLE_RATE: 0.1
+        POWERTOOLS_LOGGER_LOG_EVENT: true
+        POWERTOOLS_METRICS_NAMESPACE: TriagingTemplate
+
+Resources:
+  TriageFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: triage.TriageHandler::handleRequest
+      Environment:
+        Variables:
+          POWERTOOLS_SERVICE_NAME: triage
+      Events:
+        TriageApi:
+          Type: Api
+          Properties:
+            Path: /triage
+            Method: get
+
+Outputs:
+  TriageApi:
+    Description: "API Gateway endpoint URL for Prod stage for Triage function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/triage/"
+  TriageFunction:
+    Description: "Triage Lambda Function ARN"
+    Value: !GetAtt TriageFunction.Arn
+  TriageFunctionIamRole:
+    Description: "Implicit IAM Role created for Triage function"
+    Value: !GetAtt TriageFunctionRole.Arn
