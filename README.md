@@ -118,7 +118,7 @@ sam local start-api
 curl http://localhost:3000/triage
 ```
 
-### Testing Commands
+### Unit Testing Commands
 
 ```bash
 # Run all unit tests
@@ -161,8 +161,8 @@ The project is configured with the following Powertools environment variables in
 When triaging runtime or deployment issues, you may want to skip tests for faster iteration:
 
 ```bash
-mvn clean compile
-sam build
+mvn clean compile.
+MAVEN_OPTS="-DskipTests=true" sam build
 sam deploy
 ```
 
@@ -172,7 +172,7 @@ When customers report issues with Powertools in unit tests, run the full test su
 
 ```bash
 mvn clean test
-# Check test reports in target/surefire-reports/
+# Check test reports in target/surefire-reports/ (or in local stdout)
 ```
 
 ### For Build Issues
@@ -181,5 +181,5 @@ When investigating compilation or dependency issues:
 
 ```bash
 mvn clean compile -X  # Verbose output for debugging
-mvn dependency:tree   # Check dependency conflicts
+mvn dependency:tree   # Check dependency conflicts, useful to debug CVEs in transitive dependencies
 ```
