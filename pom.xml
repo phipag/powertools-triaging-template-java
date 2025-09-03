@@ -14,7 +14,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <powertools.version>2.2.1</powertools.version>
+        <powertools.version>2.3.0</powertools.version>
         <aspectj.version>1.9.24</aspectj.version>
     </properties>
 
